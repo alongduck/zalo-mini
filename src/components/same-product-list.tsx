@@ -2,7 +2,7 @@ import React, { FC, Suspense, useEffect } from "react";
 import { Section } from "components/section";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { productsWebSocketState, productsState } from "state";
-import { Box, Button } from "zmp-ui";
+import { Box, Button, Icon } from "zmp-ui";
 import { ProductItem } from "components/product/item";
 import { ProductItemSkeleton } from "components/skeletons";
 import { Divider } from "components/divider";
@@ -17,46 +17,47 @@ export const ProductListContent: FC = () => {
   }, [productsFromSelector, setProducts]);
 
   // Mảng các danh mục hoặc tiêu đề mà bạn muốn lặp qua
-  const categories = ["Tin đăng khác của người bán", "Tin đăng tương tự"];
+  const categories = ["Các tin đăng khác", "Tin đăng tương tự", "Tin tức"];
 
   return (
     <>
-      {categories.map((category, index) => (
-        <Section key={index} title={category}>
-          {/* Hàng chứa tiêu đề và nút */}
+{categories.map((category, index) => (
+  <Section
+    key={index}
+    title={category}
+    actionButton={
+      <Button  size="large"
+      variant="tertiary"
+      suffixIcon={<Icon icon="zi-chevron-right" />}
+      >
+        Xem thêm  
+      </Button>
+    }
+  >
+    {/* Danh sách sản phẩm */}
+    <Box className="alignItems-center">
+      <Box
+        className="flex flex-nowrap overflow-auto"
+        style={{ paddingBottom: "10px" }}
+      >
+        {products.map((product) => (
           <Box
-            className="flex justify-between items-center mb-4"
-            style={{ padding: "0 16px" }}
+            key={product.id}
+            className="flex-shrink-0"
+            style={{
+              width: "150px",
+              marginRight: "15px",
+            }}
           >
-            <Button variant="secondary" size="small" type="neutral">
-              Xem thêm
-            </Button>
+            <ProductItem product={product} />
           </Box>
+        ))}
+      </Box>
+    </Box>
 
-          {/* Danh sách sản phẩm */}
-          <Box className="alignItems-center">
-            <Box
-              className="flex flex-nowrap overflow-auto"
-              style={{ paddingBottom: "10px" }} // Thêm padding dưới cùng nếu cần
-            >
-              {products.map((product) => (
-                <Box
-                  key={product.id}
-                  className="flex-shrink-0"
-                  style={{
-                    width: "150px", // Điều chỉnh chiều rộng của từng sản phẩm
-                    marginRight: "15px", // Khoảng cách giữa các sản phẩm
-                  }}
-                >
-                  <ProductItem product={product} />
-                </Box>
-              ))}
-            </Box>
-          </Box>
-
-          <Divider size={2} />
-        </Section>
-      ))}
+    <Divider size={2} />
+  </Section>
+))}
     </>
   );
 };

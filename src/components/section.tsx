@@ -1,29 +1,24 @@
-import React, { PropsWithChildren } from "react";
-import { FC } from "react";
-import { Box, Text } from "zmp-ui";
-import { BoxProps } from "zmp-ui/box";
+import React, { FC } from "react";
+import { Box } from "zmp-ui";
 
-export interface SectionProps extends BoxProps {
+interface SectionProps {
   title: string;
-  padding?: "all" | "none" | "title-only";
+  actionButton?: React.ReactNode; // Thêm nút tùy chọn
+  children: React.ReactNode;
 }
 
-export const Section: FC<PropsWithChildren<SectionProps>> = ({
-  children,
-  title,
-  padding = "all",
-  ...props
-}) => {
+export const Section: FC<SectionProps> = ({ title, actionButton, children }) => {
   return (
-    <Box
-      className={`bg-background ${padding === "all" ? "p-4 space-y-4" : ""} ${
-        padding === "title-only" ? "py-4 space-y-4" : ""
-      }`}
-      {...props}
-    >
-      <Text.Title className={`${padding === "title-only" ? "px-4" : ""}`}>
-        {title}
-      </Text.Title>
+    <Box style={{ padding: "16px 0" }}>
+      {/* Tiêu đề và nút trong cùng một hàng */}
+      <Box
+        className="flex justify-between items-center mb-4"
+     
+      >
+        <span className="text-lg font-bold">{title}</span>
+        {actionButton}
+      </Box>
+      {/* Nội dung của Section */}
       {children}
     </Box>
   );

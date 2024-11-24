@@ -66,11 +66,15 @@ const ProductDetail: React.FC = () => {
 
             {/* Thông tin sản phẩm */}
             <Text.Title>{product.name || "Sản phẩm không có tên"}</Text.Title>
+            
+           <Text>{product.name || "Sản phẩm không có tên"}</Text>
+
+
 
             {/* Giá sản phẩm */}
             <Box className="d-flex flex justify-between align-center">
               <Text size="xLarge" bold style={{ color: "#F50000" }}>
-                {product.price ? `${product.price} Tỷ` : "Giá liên hệ"}
+                {product.price ? `${product.price} VNĐ` : "Giá liên hệ"}
               </Text>
             </Box>
 
@@ -84,24 +88,24 @@ const ProductDetail: React.FC = () => {
           <ProductListContent />
 
           {/* Nút hành động */}
-          <Box className="fixed bottom-0 w-full flex justify-around bg-white py-4 shadow-md">
-            <Button size="medium" variant="primary" style={{ width: 50 }}>
-              <Center>Gọi ngay</Center>
+          <Box className="fixed bottom-0 w-full flex bg-white py-4 shadow-md gap-3.5" >
+            <Button size="medium" variant="primary"  prefixIcon={<Icon icon="zi-call" />}>
+              Gọi ngay
             </Button>
             <Button
               prefixIcon={<Icon icon="zi-chat" />}
               size="medium"
               variant="primary"
             >
-              Chat
+              Nhắn tin
             </Button>
             <Button
-              size="medium"
-              prefixIcon={<Icon icon="zi-heart" />}
+              
+              icon={<Icon icon="zi-heart" />}
               variant="secondary"
               type="danger"
             >
-              Thích
+              
             </Button>
           </Box>
         </>
