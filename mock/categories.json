@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "name": "Biệt Thự",
+    "icon": "https://alonhatot.com.vn/thumbs/358x524x1/upload/product/rectangle-460-3509-5981.png"
+  },
+  {
+    "id": "2",
+    "name": "Mặt Tiền",
+    "icon": "https://alonhatot.com.vn/thumbs/358x524x1/upload/product/mat-tien-6770.png"
+  },
+  {
+    "id": "3",
+    "name": "Tòa Nhà",
+    "icon": "https://alonhatot.com.vn/thumbs/358x524x1/upload/product/rectangle-458-7819.png"
+  },
+  {
+    "id": "4",
+    "name": "Đất",
+    "icon": "https://alonhatot.com.vn/thumbs/358x524x1/upload/product/dat-2872.png"
+  },
+  {
+    "id": "5",
+    "name": "COMPOUND",
+    "icon": "https://alonhatot.com.vn/thumbs/358x524x1/upload/product/rectangle-462-9386-9304.png"
+  },
+  {
+    "id": "6",
+    "name": "VILLA",
+    "icon": "https://alonhatot.com.vn/thumbs/1920x750x1/upload/photo/slide-54060.png"
+  }
+]

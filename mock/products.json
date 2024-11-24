@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "NHÀ ĐẸP 5 Tầng Ngõ 750 Kim Giang, 50m oto dừng đỗ, 28m2 giá 3.8 ty",
+    "price": 35066666600,
+    "image": "https://cloud.muaban.net/images/thumb-detail/2024/08/24/280/295f3320a55147f49b8932b0958c2485.jpg",
+    "description": "There is a set of mock banners available <u>here</u> in three colours and in a range of standard banner sizes",
+    "categoryId": ["1", "2"],
+    "variantId": ["size", "topping"]
+  },
+  {
+    "id": 11,
+    "name": "Khu VIP Thanh Trì - Phố Vũ Lăng - Ô tô đỗ cửa - 45m2 - Giá đầu tư",
+    "price": 5500777777770,
+    "image": "https://cloud.muaban.net/images/thumb-detail/2024/10/12/136/9571defb12944b6793ebebf2282b7850.jpg",
+    "description": "KHU VIP THANH TRÌ - PHỐ VŨ LĂNG - Ô TÔ ĐỖ CỬA - 45m2 - GIÁ ĐẦU TƯ 3.7 TỶ",
+    "categoryId": ["4"],
+    "variantId": ["size", "topping"],
+    "sale": {
+      "type": "percent",
+      "percent": 0.5
+    }
+  }
+]
