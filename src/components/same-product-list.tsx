@@ -23,8 +23,18 @@ export const ProductListContent: FC = () => {
     <>
       {categories.map((category, index) => (
         <Section key={index} title={category}>
-          <Box>
-            {/* Container vuốt qua lại */}
+          {/* Hàng chứa tiêu đề và nút */}
+          <Box
+            className="flex justify-between items-center mb-4"
+            style={{ padding: "0 16px" }}
+          >
+            <Button variant="secondary" size="small" type="neutral">
+              Xem thêm
+            </Button>
+          </Box>
+
+          {/* Danh sách sản phẩm */}
+          <Box className="alignItems-center">
             <Box
               className="flex flex-nowrap overflow-auto"
               style={{ paddingBottom: "10px" }} // Thêm padding dưới cùng nếu cần
@@ -42,10 +52,9 @@ export const ProductListContent: FC = () => {
                 </Box>
               ))}
             </Box>
-            <Button className="z-1" variant="secondary" size="medium" type="neutral" fullWidth>Xem thêm</Button>
-
           </Box>
-          <Divider size={2}/>
+
+          <Divider size={2} />
         </Section>
       ))}
     </>

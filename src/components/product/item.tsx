@@ -22,7 +22,7 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
               {/* Hình ảnh sản phẩm */}
               <img
                 loading="lazy"
-                src={product.images}
+                src={product.images[0]?.src || "fallback-image-url.jpg"}
                 style={{ width: "150px", height: "150px" }}
                 className="left-0 right-0 top-0 bottom-0 object-cover object-center rounded-lg bg-skeleton"
                 alt={product.name}

@@ -17,12 +17,13 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
 
         <div className="space-y-2" onClick={handleNavigateToDetail}> {/* Khi nhấn vào item sẽ điều hướng đến trang chi tiết */}
           <Box className="w-full aspect-square relative">
-            <img
-              loading="lazy"
-              src={product.image}
-              className="absolute left-0 right-0 top-0 bottom-0 w-full h-full object-cover object-center rounded-lg bg-skeleton"
-              alt={product.name}
-            />
+          <img
+                loading="lazy"
+                src={product.images[0]?.src || "fallback-image-url.jpg"}
+                style={{ width: "150px", height: "150px" }}
+                className="left-0 right-0 top-0 bottom-0 object-cover object-center rounded-lg bg-skeleton"
+                alt={product.name}
+              />
           </Box>
           <Text>{product.name}</Text>
           <Text size="xxSmall" className="text-gray pb-2">
