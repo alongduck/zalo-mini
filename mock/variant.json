@@ -1,0 +1,52 @@
+[
+  
+    {
+      "id": "land_width",
+      "label": "Chiều ngang",
+      "type": "single",
+      "default": "6.43 m",
+      "options": [
+        {
+          "id": "6.43",
+          "label": "6.43 m"
+        }
+      ]
+    },
+    {
+      "id": "land_features",
+      "label": "Đặc điểm nhà/đất",
+      "type": "single",
+      "default": "Thổ cư toàn bộ",
+      "options": [
+        {
+          "id": "total_residential",
+          "label": "Thổ cư toàn bộ"
+        }
+      ]
+    },
+    {
+      "id": "land_area",
+      "label": "Diện tích đất",
+      "type": "single",
+      "default": "84.3 m²",
+      "options": [
+        {
+          "id": "84.3",
+          "label": "84.3 m²"
+        }
+      ]
+    },
+    {
+      "id": "unit",
+      "label": "Đơn vị (m²/hecta)",
+      "type": "single",
+      "default": "m²",
+      "options": [
+        {
+          "id": "m2",
+          "label": "m²"
+        }
+      ]
+    }
+  
+]

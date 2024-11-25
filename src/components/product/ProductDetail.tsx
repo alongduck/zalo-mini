@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Box, Text, Swiper, Button, Icon, Center, ImageViewer } from "zmp-ui";
+import { Box, Text, Swiper, Button, Icon, Center, ImageViewer, Avatar } from "zmp-ui";
 import { ProductListContent } from "components/same-product-list";
-
+import { useRecoilValueLoadable } from "recoil";
+import { UserCard } from "components/UserCard";
+import { Divider } from "components/divider";
 const ProductDetail: React.FC = () => {
   const location = useLocation();
   const { product } = location.state || {};
@@ -28,9 +30,9 @@ const ProductDetail: React.FC = () => {
     <Box p={4} className="bg-white">
       {product ? (
         <>
-          <Box className="space-y-4">
+          <Box className="mb-5">
             {/* Hình ảnh sản phẩm */}
-            <Box>
+            <Box className="mb-2">
               {images.length > 0 ? (
                 <Swiper>
                   {images.map((image, index) => (
@@ -65,49 +67,103 @@ const ProductDetail: React.FC = () => {
             />
 
             {/* Thông tin sản phẩm */}
-            <Text.Title>{product.name || "Sản phẩm không có tên"}</Text.Title>
-            
-           <Text>{product.name || "Sản phẩm không có tên"}</Text>
+            <Text.Header style={{ fontWeight: 700 }}>{product.name || "Sản phẩm không có tên"}</Text.Header>
+
+            <Text size="small" className="mb-3 ml-1">{product.descriptionheader || "Đất thổ cư"}</Text>
 
 
 
             {/* Giá sản phẩm */}
-            <Box className="d-flex flex justify-between align-center">
-              <Text size="xLarge" bold style={{ color: "#F50000" }}>
+            <Box className="d-flex flex justify-start align-center mb-3 p-4 rounded-md" style={{ backgroundColor: "#F1F4F8" }}>
+              <Text size="large" bold style={{ color: "#F50000", fontWeight: 700 }}>
                 {product.price ? `${product.price} VNĐ` : "Giá liên hệ"}
               </Text>
+              <Text className="pl-2 pr-2">
+                -
+              </Text>
+
+              {/* giá sản phẩm trên m vuông */}
+              <Text size="large" style={{ fontWeight: 700 }}>
+                {product.pricedetail || "52,50 triệu/m"}
+              </Text>
             </Box>
+
+            <Box className="mb-5">
+  {/* Đặc điểm sản phẩm */}
+  <Box className="flex flex-wrap" justifyContent="space-between">
+    <Box className="mb-4" style={{ flexBasis: "48%" }}>
+      <Text className="font-bold">Giá/m²:</Text>
+      <Text>{product.landPrice || "52,19 triệu/m²"}</Text>
+    </Box>
+    <Box className="mb-4" style={{ flexBasis: "48%" }}>
+      <Text className="font-bold">Giấy tờ pháp lý:</Text>
+      <Text>{product.legalDocuments || "Đã có sổ"}</Text>
+    </Box>
+    <Box className="mb-4" style={{ flexBasis: "48%" }}>
+      <Text className="font-bold">Loại hình đất:</Text>
+      <Text>{product.landType || "Đất thổ cư"}</Text>
+    </Box>
+    <Box className="mb-4" style={{ flexBasis: "48%" }}>
+      <Text className="font-bold">Chiều ngang:</Text>
+      <Text>{product.landWidth || "6.43 m"}</Text>
+    </Box>
+    <Box className="mb-4" style={{ flexBasis: "48%" }}>
+      <Text className="font-bold">Đặc điểm nhà/đất:</Text>
+      <Text>{product.landFeatures || "Thổ cư toàn bộ"}</Text>
+    </Box>
+    <Box className="mb-4" style={{ flexBasis: "48%" }}>
+      <Text className="font-bold">Diện tích đất:</Text>
+      <Text>{product.landArea || "84.3 m²"}</Text>
+    </Box>
+    <Box className="mb-4" style={{ flexBasis: "48%" }}>
+      <Text className="font-bold">Đơn vị (m²/hecta):</Text>
+      <Text>{product.unit || "m²"}</Text>
+    </Box>
+  </Box>
+</Box>
+
 
             {/* Mô tả sản phẩm */}
             <Text>
               {product.description || "Không có mô tả cho sản phẩm này."}
             </Text>
+
+          </Box>
+
+
+          {/* user card*/}
+          <Box className="rounded-md p-3 border border-gray-50">
+            <Box flex alignItems="center" ml={3}>
+              <Avatar size={50} src={"https://static.chotot.com/storage/marketplace/common/png/default_user.png"}>
+              </Avatar>
+              <Box ml={4}>
+                <Text.Header>Phát Huy</Text.Header>
+                <Text size="xxxSmall">Môi giới </Text>
+              </Box>
+              <Box>
+                <div className="zalo-follow-button" data-oaid="1440475408506399998" data-cover="yes" data-article="" data-width="" data-height=""></div>
+              </Box>
+            </Box>
           </Box>
 
           {/* Sản phẩm tương tự */}
           <ProductListContent />
 
           {/* Nút hành động */}
-          <Box className="fixed bottom-0 w-full flex bg-white py-4 shadow-md gap-3.5" >
-            <Button size="medium" variant="primary"  prefixIcon={<Icon icon="zi-call" />}>
+
+          <Box className="absolute bottom-0 w-full flex bg-white py-4 shadow-md justify-around left-0">
+            <Button size="medium" variant="secondary" type="danger" prefixIcon={<Icon icon="zi-call" />}>
               Gọi ngay
             </Button>
-            <Button
-              prefixIcon={<Icon icon="zi-chat" />}
-              size="medium"
-              variant="primary"
-            >
+            <Button prefixIcon={<Icon icon="zi-chat" />} size="medium" variant="secondary" type="highlight">
               Nhắn tin
             </Button>
-            <Button
-              
-              icon={<Icon icon="zi-heart" />}
-              variant="secondary"
-              type="danger"
-            >
-              
+            <Button icon={<Icon icon="zi-bookmark" />} size="medium" variant="secondary" type="neutral">
             </Button>
+
           </Box>
+
+
         </>
       ) : (
         <Text>Loading...</Text>
