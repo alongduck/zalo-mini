@@ -64,6 +64,7 @@ const ProductDetail: React.FC = () => {
               visible={visible} // Hiển thị khi trạng thái visible là true
               activeIndex={activeIndex} // Ảnh hiện tại
               onClose={() => setVisible(false)} // Đóng ImageViewer
+              maskStyle={{backgroundColor:"#000000cc"}}
             />
 
             {/* Thông tin sản phẩm */}
@@ -76,7 +77,7 @@ const ProductDetail: React.FC = () => {
             {/* Giá sản phẩm */}
             <Box className="d-flex flex justify-start align-center mb-3 p-4 rounded-md" style={{ backgroundColor: "#F1F4F8" }}>
               <Text size="large" bold style={{ color: "#F50000", fontWeight: 700 }}>
-                {product.price ? `${product.price} VNĐ` : "Giá liên hệ"}
+                {product.price ? `${product.price} Tỷ` : "liên hệ "}
               </Text>
               <Text className="pl-2 pr-2">
                 -
@@ -85,6 +86,14 @@ const ProductDetail: React.FC = () => {
               {/* giá sản phẩm trên m vuông */}
               <Text size="large" style={{ fontWeight: 700 }}>
                 {product.pricedetail || "52,50 triệu/m"}
+              </Text>
+              <Text className="pl-2 pr-2">
+                -
+              </Text>
+
+              {/*số m vuông */}
+              <Text size="large" style={{ fontWeight: 700 }}>
+                {product.pricedetail || "176m"}
               </Text>
             </Box>
 
@@ -124,7 +133,7 @@ const ProductDetail: React.FC = () => {
 
 
             {/* Mô tả sản phẩm */}
-            <Text>
+            <Text className=" leading-relaxed whitespace-pre-line" >
               {product.description || "Không có mô tả cho sản phẩm này."}
             </Text>
 

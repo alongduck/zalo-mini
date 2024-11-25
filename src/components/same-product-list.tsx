@@ -29,6 +29,7 @@ export const ProductListContent: FC = () => {
       <Button  size="large"
       variant="tertiary"
       suffixIcon={<Icon icon="zi-chevron-right" />}
+      className="p-0 left-7"
       >
         Xem thêm  
       </Button>
