@@ -15,9 +15,9 @@ export const ProductItem: FC<{ product: Product }> = ({ product }) => {
 
   return (
 
-        <div className="space-y-2 "  onClick={handleNavigateToDetail}> {/* Khi nhấn vào item sẽ điều hướng đến trang chi tiết */}
+        <div className=""  onClick={handleNavigateToDetail}> {/* Khi nhấn vào item sẽ điều hướng đến trang chi tiết */}
             <Box  className="aspect-square "
-            style={{ width: "150px", height: "200px" }}
+            style={{ width: "150px",maxWidth:"150px", height: "200px" }}
             >
               {/* Hình ảnh sản phẩm */}
               <img

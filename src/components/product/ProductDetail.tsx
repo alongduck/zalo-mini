@@ -3,27 +3,42 @@ import { useLocation } from "react-router-dom";
 import { Box, Text, Swiper, Button, Icon, Center, ImageViewer, Avatar } from "zmp-ui";
 import { ProductListContent } from "components/same-product-list";
 import { useRecoilValueLoadable } from "recoil";
-import { UserCard } from "components/UserCard";
 import { Divider } from "components/divider";
+import logo from "static/logo.png";
+import {
+  CurrencyDollarIcon,
+  DocumentIcon,
+  ArrowsRightLeftIcon,
+  ArrowsUpDownIcon,
+  BuildingOfficeIcon,
+  HomeIcon,
+  MapPinIcon,
+  ClockIcon,
+} from "@heroicons/react/24/outline";
+import PropertyFeatures from "./PropertyFeatures";
+import MapView from "components/display/MapView";
+import SaleCard from "./SaleCard";
+
 const ProductDetail: React.FC = () => {
   const location = useLocation();
   const { product } = location.state || {};
 
   // Chuẩn hóa danh sách URL ảnh từ API
-  const images = product?.images?.map((img, index) => ({
-    src: img.src || "/fallback-image-url",
-    alt: `product-image-${index}`,
-    key: index.toString(),
-  })) || [];
+  const images =
+    product?.images?.map((img, index) => ({
+      src: img.src || "/fallback-image-url",
+      alt: `product-image-${index}`,
+      key: index.toString(),
+    })) || [];
 
   // State để quản lý hiển thị ImageViewer
-  const [visible, setVisible] = useState(false); // Kiểm soát trạng thái hiển thị
-  const [activeIndex, setActiveIndex] = useState(0); // Ảnh đang được chọn
+  const [visible, setVisible] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   // Hàm mở ImageViewer
   const openImageViewer = (index: number) => {
-    setActiveIndex(index); // Đặt ảnh đang được chọn
-    setVisible(true); // Hiển thị ImageViewer
+    setActiveIndex(index);
+    setVisible(true);
   };
 
   return (
@@ -45,10 +60,8 @@ const ProductDetail: React.FC = () => {
                           width: "100%",
                           height: "30dvh",
                         }}
-                        onClick={() => openImageViewer(index)} // Mở ImageViewer khi click
-                        onError={(e) =>
-                          (e.currentTarget.src = "/fallback-image-url") // Fallback URL
-                        }
+                        onClick={() => openImageViewer(index)}
+                        onError={(e) => (e.currentTarget.src = "/fallback-image-url")}
                       />
                     </Swiper.Slide>
                   ))}
@@ -60,10 +73,11 @@ const ProductDetail: React.FC = () => {
 
             {/* Hiển thị ImageViewer */}
             <ImageViewer
-              images={images} // Danh sách URL ảnh
-              visible={visible} // Hiển thị khi trạng thái visible là true
-              activeIndex={activeIndex} // Ảnh hiện tại
-              onClose={() => setVisible(false)} // Đóng ImageViewer
+              images={images}
+              visible={visible}
+              activeIndex={activeIndex}
+              onClose={() => setVisible(false)}
+              maskStyle={{ backgroundColor: "#00000000cc" }}
             />
 
             {/* Thông tin sản phẩm */}
@@ -71,103 +85,89 @@ const ProductDetail: React.FC = () => {
 
             <Text size="small" className="mb-3 ml-1">{product.descriptionheader || "Đất thổ cư"}</Text>
 
-
-
             {/* Giá sản phẩm */}
             <Box className="d-flex flex justify-start align-center mb-3 p-4 rounded-md" style={{ backgroundColor: "#F1F4F8" }}>
               <Text size="large" bold style={{ color: "#F50000", fontWeight: 700 }}>
-                {product.price ? `${product.price} VNĐ` : "Giá liên hệ"}
+                {product.price ? `${product.price} Tỷ` : "Giá liên hệ"}
               </Text>
-              <Text className="pl-2 pr-2">
-                -
-              </Text>
-
-              {/* giá sản phẩm trên m vuông */}
+              <Text className="pl-2 pr-2">-</Text>
               <Text size="large" style={{ fontWeight: 700 }}>
                 {product.pricedetail || "52,50 triệu/m"}
               </Text>
+              <Text className="pl-2 pr-2">-</Text>
+              <Text size="large" style={{ fontWeight: 700 }}>
+                {product.dientich || "999/m2"}
+              </Text>
             </Box>
 
+            {/* Địa chỉ và thời gian cập nhật */}
+            <Box className="mb-5 space-y-2">
+              {/* Địa chỉ */}
+              <Box className="flex items-center">
+                <MapPinIcon className="h-5 w-5 text-gray-500 mr-3" />
+                <Text>{product.address || "999,lương định của, bình tân, quận 11, thành phố Hồ Chí Minh"}</Text>
+              </Box>
+              {/* Thời gian cập nhật */}
+              <Box className="flex items-center">
+                <ClockIcon className="h-5 w-5 text-gray-500 mr-3" />
+                <Text>{product.updatedAt || "Cập nhật 3 tháng trước"}</Text>
+              </Box>
+            </Box>
+            <PropertyFeatures
+              landPrice={product.landPrice}
+              legalDocuments={product.legalDocuments}
+              landType={product.landType}
+              landWidth={product.landWidth}
+              landLength={product.landLength}
+              landFeatures={product.landFeatures}
+            />
+            {/* Mô tả chi tiết */}
             <Box className="mb-5">
-  {/* Đặc điểm sản phẩm */}
-  <Box className="flex flex-wrap" justifyContent="space-between">
-    <Box className="mb-4" style={{ flexBasis: "48%" }}>
-      <Text className="font-bold">Giá/m²:</Text>
-      <Text>{product.landPrice || "52,19 triệu/m²"}</Text>
-    </Box>
-    <Box className="mb-4" style={{ flexBasis: "48%" }}>
-      <Text className="font-bold">Giấy tờ pháp lý:</Text>
-      <Text>{product.legalDocuments || "Đã có sổ"}</Text>
-    </Box>
-    <Box className="mb-4" style={{ flexBasis: "48%" }}>
-      <Text className="font-bold">Loại hình đất:</Text>
-      <Text>{product.landType || "Đất thổ cư"}</Text>
-    </Box>
-    <Box className="mb-4" style={{ flexBasis: "48%" }}>
-      <Text className="font-bold">Chiều ngang:</Text>
-      <Text>{product.landWidth || "6.43 m"}</Text>
-    </Box>
-    <Box className="mb-4" style={{ flexBasis: "48%" }}>
-      <Text className="font-bold">Đặc điểm nhà/đất:</Text>
-      <Text>{product.landFeatures || "Thổ cư toàn bộ"}</Text>
-    </Box>
-    <Box className="mb-4" style={{ flexBasis: "48%" }}>
-      <Text className="font-bold">Diện tích đất:</Text>
-      <Text>{product.landArea || "84.3 m²"}</Text>
-    </Box>
-    <Box className="mb-4" style={{ flexBasis: "48%" }}>
-      <Text className="font-bold">Đơn vị (m²/hecta):</Text>
-      <Text>{product.unit || "m²"}</Text>
-    </Box>
-  </Box>
-</Box>
+              <Text.Header style={{ fontWeight: 700, marginBottom: "16px" }}>Mô tả chi tiết</Text.Header>
 
-
-            {/* Mô tả sản phẩm */}
-            <Text>
-              {product.description || "Không có mô tả cho sản phẩm này."}
-            </Text>
-
-          </Box>
-
-
-          {/* user card*/}
-          <Box className="rounded-md p-3 border border-gray-50">
-            <Box flex alignItems="center" ml={3}>
-              <Avatar size={50} src={"https://static.chotot.com/storage/marketplace/common/png/default_user.png"}>
-              </Avatar>
-              <Box ml={4}>
-                <Text.Header>Phát Huy</Text.Header>
-                <Text size="xxxSmall">Môi giới </Text>
-              </Box>
+              {/* Hiển thị mô tả chi tiết */}
               <Box>
-                <div className="zalo-follow-button" data-oaid="1440475408506399998" data-cover="yes" data-article="" data-width="" data-height=""></div>
+                <Text className="whitespace-pre-wrap leading-loose">
+                  {product.description || "Không có mô tả chi tiết cho sản phẩm này."}
+                </Text>
               </Box>
             </Box>
+
+              <Box className="mb-10">
+              <MapView
+              latitude={product.latitude}
+              longitude={product.longitude}
+              address={product.address}
+              zoom={15} // Tùy chọn zoom nếu cần
+            
+            />
+              </Box>
+           
+             {/*sale card */}
+             <SaleCard name={"Phát Huy"} avatarUrl={""} role={"môi giới"} lastActive={"3 tháng trước"} responseRate={"1"} postCount={10} yearsActive={10} />
+            
+            {/*List sản phẩm khác + tin tức */}
+            <ProductListContent/>
+            
           </Box>
-
-          {/* Sản phẩm tương tự */}
-          <ProductListContent />
-
           {/* Nút hành động */}
 
           <Box className="absolute bottom-0 w-full flex bg-white py-4 shadow-md justify-around left-0">
-            <Button size="medium" variant="secondary" type="danger" prefixIcon={<Icon icon="zi-call" />}>
+            <Button className="animate-bounce" size="medium" variant="secondary" type="danger" prefixIcon={<Icon icon="zi-call" />}>
               Gọi ngay
             </Button>
-            <Button prefixIcon={<Icon icon="zi-chat" />} size="medium" variant="secondary" type="highlight">
+            <Button className="animate-bounce" prefixIcon={<Icon icon="zi-chat" />} size="medium" variant="secondary" type="highlight">
               Nhắn tin
             </Button>
             <Button icon={<Icon icon="zi-bookmark" />} size="medium" variant="secondary" type="neutral">
             </Button>
 
           </Box>
-
-
         </>
       ) : (
         <Text>Loading...</Text>
       )}
+      <img className="w-full h-15 rounded-lg mb-10" src={logo} />
     </Box>
   );
 };
