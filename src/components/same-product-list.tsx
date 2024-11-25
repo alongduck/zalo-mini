@@ -42,6 +42,7 @@ export const ProductListContent: FC = () => {
 
   return (
     <>
+<<<<<<< HEAD
       {categories.map((category, index) => (
         <Section
           key={index}
@@ -77,6 +78,38 @@ export const ProductListContent: FC = () => {
                 </Box>
               ))}
             </Box>
+=======
+{categories.map((category, index) => (
+  <Section
+    key={index}
+    title={category}
+    actionButton={
+      <Button  size="large"
+      variant="tertiary"
+      suffixIcon={<Icon icon="zi-chevron-right" />}
+      className="p-0 left-7"
+      >
+        Xem thêm  
+      </Button>
+    }
+  >
+    {/* Danh sách sản phẩm */}
+    <Box className="alignItems-center">
+      <Box
+        className="flex flex-nowrap overflow-auto"
+        style={{ paddingBottom: "10px" }}
+      >
+        {products.map((product) => (
+          <Box
+            key={product.id}
+            className="flex-shrink-0"
+            style={{
+              width: "150px",
+              marginRight: "15px",
+            }}
+          >
+            <ProductItem product={product} />
+>>>>>>> 99d15b97f21b4aa5d4cd6ec947ced9424369e0ba
           </Box>
 
           <Divider size={2} />

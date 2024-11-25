@@ -73,11 +73,19 @@ const ProductDetail: React.FC = () => {
 
             {/* Hiển thị ImageViewer */}
             <ImageViewer
+<<<<<<< HEAD
               images={images}
               visible={visible}
               activeIndex={activeIndex}
               onClose={() => setVisible(false)}
               maskStyle={{ backgroundColor: "#00000000cc" }}
+=======
+              images={images} // Danh sách URL ảnh
+              visible={visible} // Hiển thị khi trạng thái visible là true
+              activeIndex={activeIndex} // Ảnh hiện tại
+              onClose={() => setVisible(false)} // Đóng ImageViewer
+              maskStyle={{backgroundColor:"#000000cc"}}
+>>>>>>> 99d15b97f21b4aa5d4cd6ec947ced9424369e0ba
             />
 
             {/* Thông tin sản phẩm */}
@@ -88,15 +96,29 @@ const ProductDetail: React.FC = () => {
             {/* Giá sản phẩm */}
             <Box className="d-flex flex justify-start align-center mb-3 p-4 rounded-md" style={{ backgroundColor: "#F1F4F8" }}>
               <Text size="large" bold style={{ color: "#F50000", fontWeight: 700 }}>
+<<<<<<< HEAD
                 {product.price ? `${product.price} Tỷ` : "Giá liên hệ"}
+=======
+                {product.price ? `${product.price} Tỷ` : "liên hệ "}
+>>>>>>> 99d15b97f21b4aa5d4cd6ec947ced9424369e0ba
               </Text>
               <Text className="pl-2 pr-2">-</Text>
               <Text size="large" style={{ fontWeight: 700 }}>
                 {product.pricedetail || "52,50 triệu/m"}
               </Text>
+<<<<<<< HEAD
               <Text className="pl-2 pr-2">-</Text>
               <Text size="large" style={{ fontWeight: 700 }}>
                 {product.dientich || "999/m2"}
+=======
+              <Text className="pl-2 pr-2">
+                -
+              </Text>
+
+              {/*số m vuông */}
+              <Text size="large" style={{ fontWeight: 700 }}>
+                {product.pricedetail || "176m"}
+>>>>>>> 99d15b97f21b4aa5d4cd6ec947ced9424369e0ba
               </Text>
             </Box>
 
@@ -125,7 +147,28 @@ const ProductDetail: React.FC = () => {
             <Box className="mb-5">
               <Text.Header style={{ fontWeight: 700, marginBottom: "16px" }}>Mô tả chi tiết</Text.Header>
 
+<<<<<<< HEAD
               {/* Hiển thị mô tả chi tiết */}
+=======
+
+            {/* Mô tả sản phẩm */}
+            <Text className=" leading-relaxed whitespace-pre-line" >
+              {product.description || "Không có mô tả cho sản phẩm này."}
+            </Text>
+
+          </Box>
+
+
+          {/* user card*/}
+          <Box className="rounded-md p-3 border border-gray-50">
+            <Box flex alignItems="center" ml={3}>
+              <Avatar size={50} src={"https://static.chotot.com/storage/marketplace/common/png/default_user.png"}>
+              </Avatar>
+              <Box ml={4}>
+                <Text.Header>Phát Huy</Text.Header>
+                <Text size="xxxSmall">Môi giới </Text>
+              </Box>
+>>>>>>> 99d15b97f21b4aa5d4cd6ec947ced9424369e0ba
               <Box>
                 <Text className="whitespace-pre-wrap leading-loose">
                   {product.description || "Không có mô tả chi tiết cho sản phẩm này."}
